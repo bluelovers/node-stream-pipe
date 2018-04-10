@@ -5,6 +5,8 @@
 import * as fs from "fs";
 import { ReadStream, createReadStream } from "./fs";
 
+export { createReadStream }
+
 export function pipe<U extends NodeJS.ReadableStream, T extends NodeJS.WritableStream>(srcStream: U, destStream: T, options?: IOptionsStreamPipe): IPipe<U, T>
 {
 	let _dest = destStream as T & {

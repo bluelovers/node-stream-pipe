@@ -5,6 +5,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const fs_1 = require("./fs");
+exports.createReadStream = fs_1.createReadStream;
 function pipe(srcStream, destStream, options) {
     let _dest = destStream;
     _dest.pipeFrom = srcStream;
