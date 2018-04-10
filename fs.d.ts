@@ -15,7 +15,8 @@ export declare type IOptionsFsCreateReadStream = {
     highWaterMark?: number;
 };
 export declare class ReadStream extends fs.ReadStream {
-    pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this, T>;
+    path: string;
+    pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this & ReadStream & fs.ReadStream, T>;
     static createReadStream(file: string | Buffer, options?: IOptionsFsCreateReadStream, ...argv: any[]): ReadStream & fs.ReadStream;
 }
 export declare const createReadStream: typeof ReadStream.createReadStream;

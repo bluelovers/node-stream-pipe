@@ -20,9 +20,11 @@ export type IOptionsFsCreateReadStream = {
 
 export class ReadStream extends fs.ReadStream
 {
-	pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this, T>
+	public path: string;
+
+	pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this & ReadStream & fs.ReadStream, T>
 	{
-		return pipe(this, destination, options) as IPipe<this, T>;
+		return pipe<this & ReadStream & fs.ReadStream, T>(this, destination, options);
 	}
 
 	static createReadStream(file: string | Buffer, options?: IOptionsFsCreateReadStream, ...argv): ReadStream & fs.ReadStream
