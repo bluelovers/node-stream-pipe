@@ -1,6 +1,6 @@
 {
   "name": "stream-pipe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "add stream.pipeFrom",
   "keywords": [
     "from",

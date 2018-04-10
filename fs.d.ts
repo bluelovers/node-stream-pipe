@@ -16,8 +16,10 @@ export declare type IOptionsFsCreateReadStream = {
 };
 export declare class ReadStream extends fs.ReadStream {
     path: string;
+    cwd: string;
+    constructor(file: fs.PathLike, ...argv: any[]);
     pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this & ReadStream & fs.ReadStream, T>;
-    static createReadStream(file: string | Buffer, options?: IOptionsFsCreateReadStream, ...argv: any[]): ReadStream & fs.ReadStream;
+    static createReadStream(file: fs.PathLike, options?: IOptionsFsCreateReadStream, ...argv: any[]): ReadStream & fs.ReadStream;
 }
 export declare const createReadStream: typeof ReadStream.createReadStream;
 export default createReadStream;

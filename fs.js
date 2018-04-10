@@ -6,6 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const index_1 = require("./index");
 class ReadStream extends fs.ReadStream {
+    constructor(file, ...argv) {
+        // @ts-ignore
+        super(file, ...argv);
+        this.cwd = process.cwd();
+    }
     pipe(destination, options) {
         return index_1.pipe(this, destination, options);
     }

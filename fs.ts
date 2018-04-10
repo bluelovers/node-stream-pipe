@@ -21,13 +21,21 @@ export type IOptionsFsCreateReadStream = {
 export class ReadStream extends fs.ReadStream
 {
 	public path: string;
+	public cwd: string;
+
+	constructor(file: fs.PathLike, ...argv)
+	{
+		// @ts-ignore
+		super(file, ...argv);
+		this.cwd = process.cwd();
+	}
 
 	pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this & ReadStream & fs.ReadStream, T>
 	{
 		return pipe<this & ReadStream & fs.ReadStream, T>(this, destination, options);
 	}
 
-	static createReadStream(file: string | Buffer, options?: IOptionsFsCreateReadStream, ...argv): ReadStream & fs.ReadStream
+	static createReadStream(file: fs.PathLike, options?: IOptionsFsCreateReadStream, ...argv): ReadStream & fs.ReadStream
 	{
 		// @ts-ignore
 		return new this(file, options, ...argv);

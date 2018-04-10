@@ -12,6 +12,8 @@ createReadStream(file).pipe(through2.obj(function (chunk, enc, cb)
 	console.log(this.pipeFrom.path);
 	console.log(this.pipeFrom.bytesRead);
 
+	console.log(this.pipeFrom.cwd);
+
 	this.push(chunk);
 	cb();
 }));
