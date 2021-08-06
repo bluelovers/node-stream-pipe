@@ -1,6 +1,6 @@
 {
   "name": "stream-pipe",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "add stream.pipeFrom",
   "keywords": [
     "from",
@@ -27,7 +27,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "npm:publish": "npm publish",
     "npm:publish:bump": "yarn-tool version && npm publish",
     "preversion": "echo preversion && yarn run prepublishOnly:check-bin && yarn run test",
