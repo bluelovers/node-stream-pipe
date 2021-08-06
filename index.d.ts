@@ -1,3 +1,6 @@
+/**
+ * Created by user on 2018/4/10/010.
+ */
 /// <reference types="node" />
 import { createReadStream } from "./fs";
 export { createReadStream };

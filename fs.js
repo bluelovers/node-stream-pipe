@@ -3,9 +3,10 @@
  * Created by user on 2018/4/10/010.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require("fs");
+exports.createReadStream = exports.ReadStream = void 0;
+const fs_1 = require("fs");
 const index_1 = require("./index");
-class ReadStream extends fs.ReadStream {
+class ReadStream extends fs_1.ReadStream {
     constructor(file, ...argv) {
         // @ts-ignore
         super(file, ...argv);
@@ -22,3 +23,4 @@ class ReadStream extends fs.ReadStream {
 exports.ReadStream = ReadStream;
 exports.createReadStream = ReadStream.createReadStream.bind(ReadStream);
 exports.default = exports.createReadStream;
+//# sourceMappingURL=fs.js.map

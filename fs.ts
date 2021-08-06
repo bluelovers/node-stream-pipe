@@ -2,8 +2,7 @@
  * Created by user on 2018/4/10/010.
  */
 
-import * as fs from "fs";
-import * as stream from "stream";
+import { ReadStream as fsReadStream, PathLike } from "fs";
 
 import { IOptionsStreamPipe, pipe, IPipe } from './index';
 
@@ -18,24 +17,24 @@ export type IOptionsFsCreateReadStream = {
 	highWaterMark?: number;
 };
 
-export class ReadStream extends fs.ReadStream
+export class ReadStream extends fsReadStream
 {
-	public path: string;
+	public override path: string;
 	public cwd: string;
 
-	constructor(file: fs.PathLike, ...argv)
+	constructor(file: PathLike, ...argv)
 	{
 		// @ts-ignore
 		super(file, ...argv);
 		this.cwd = process.cwd();
 	}
 
-	pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this & ReadStream & fs.ReadStream, T>
+	override pipe<T extends NodeJS.WritableStream>(destination: T, options?: IOptionsStreamPipe): IPipe<this & ReadStream & fsReadStream, T>
 	{
-		return pipe<this & ReadStream & fs.ReadStream, T>(this, destination, options);
+		return pipe<this & ReadStream & fsReadStream, T>(this, destination, options);
 	}
 
-	static createReadStream(file: fs.PathLike, options?: IOptionsFsCreateReadStream, ...argv): ReadStream & fs.ReadStream
+	static createReadStream(file: PathLike, options?: IOptionsFsCreateReadStream, ...argv): ReadStream & fsReadStream
 	{
 		// @ts-ignore
 		return new this(file, options, ...argv);

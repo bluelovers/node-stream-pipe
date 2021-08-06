@@ -2,7 +2,7 @@
  * Created by user on 2018/4/10/010.
  */
 
-import * as fs from "fs";
+import { ReadStream as fsReadStream } from "fs";
 import { ReadStream, createReadStream } from "./fs";
 
 export { createReadStream }
@@ -17,10 +17,10 @@ export function pipe<U extends NodeJS.ReadableStream, T extends NodeJS.WritableS
 
 	if (srcStream instanceof ReadStream)
 	{
-		return fs.ReadStream.prototype.pipe.call(srcStream, _dest);
+		return fsReadStream.prototype.pipe.call(srcStream, _dest) as any;
 	}
 
-	return srcStream.pipe(_dest);
+	return srcStream.pipe(_dest) as any;
 }
 
 export type IOptionsStreamPipe = {
